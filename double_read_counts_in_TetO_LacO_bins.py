@@ -1,4 +1,4 @@
-# This Python script doubles the number of read counts in the bins corresponding to the TetO+3xCTCF and 3xCTCF+LacO sequences (which are heterozygous) to make the read counts as would be expected from homozygous insertions. This step is performed before zoomifying/balancing the cooler.
+# For a contact matrix containing raw read counts (.cool file) for the TetO-LacO+3xCTCF cell line from Mach et al. 2022, this Python script doubles the number of read counts in the bins corresponding to the TetO+3xCTCF and 3xCTCF+LacO sequences (which are heterozygous) to make the read counts as would be expected from homozygous insertions. This step is performed before zoomifying/balancing the cooler.
 
 # arguments:
 # (1) filename for input cooler (assumes it is a .cool file with 250 bp bin sizes)
