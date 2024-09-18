@@ -6,7 +6,6 @@ Code is provided as shell scripts, Python scripts, or Jupyter notebooks to be ru
 
 
 ## Main scripts for Micro-C data processing
-__________________
 
 #### Alignment of Micro-C reads (microc_bwamem_with_recovery.py)
 
@@ -27,7 +26,6 @@ python process_pairs_to_mcool.py --name sample_name --genome mm39.fasta --assemb
 ```
 
 ## Helper scripts for Micro-C data processing
-__________________
 
 The following scripts are called by the two main scripts for Micro-C data processing described above.
 
@@ -56,7 +54,6 @@ Example usage:
 
 
 ## Loop calling, quantification, and classification
-__________________
 
 #### Calculate P(s) curves (calculate_P_s_curves.py)
 
@@ -92,7 +89,6 @@ This Python script identifies whether the left and right anchor of each loop is 
 
 
 ## Analysis of publicly available epigenomic data
-_______________
 
 #### Alignment scripts (spikeinChIP_SE_alignment.py/spikeinChIP_PE_alignment.py)
 
@@ -118,7 +114,6 @@ Example usage:
 
 
 ## 3D polymer simulations
-__________________
 
 #### Running polymer simulations
 
