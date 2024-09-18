@@ -2,10 +2,10 @@
 
 This repository contains source code for James' absolute loop quantification project. (Eventually add the name of the manuscript in this introduction section.)
 
-Code is provided as shell scripts, Python scripts, or Jupyter notebooks to be run in conda environments containing the required packages.
+Code is provided as shell scripts, Python scripts, or Jupyter notebooks to be run in conda environments.
 
 
-### Main scripts for Micro-C data processing
+## Main scripts for Micro-C data processing
 __________________
 
 #### Alignment of Micro-C reads (microc_bwamem_with_recovery.py)
@@ -26,7 +26,7 @@ Example usage:
 python process_pairs_to_mcool.py --name sample_name --genome mm39.fasta --assembly mm39 --threads 8 --transfraction 0.05 --ignoredist 20000 --outdir output_directory
 ```
 
-### Helper scripts for Micro-C data processing
+## Helper scripts for Micro-C data processing
 __________________
 
 The following scripts are called by the two main scripts for Micro-C data processing described above.
@@ -55,7 +55,7 @@ Example usage:
 ```python double_read_counts_in_TetO_LacO_bins.py TetO_LacO_rep1_250bp.cool TetO_LacO_rep1_syn_regions_doubled_250bp.cool```
 
 
-### Loop calling, quantification, and classification
+## Loop calling, quantification, and classification
 __________________
 
 #### Calculate P(s) curves (calculate_P_s_curves.py)
@@ -91,7 +91,7 @@ This shell script processes the ChIP peak data (H3K4me1, H3K27ac, CTCF, and SMC1
 This Python script identifies whether the left and right anchor of each loop is a promoter, enhancer, or CTCF/cohesin-bound site, and classifies the loops as enhancer-promoter, promoter-promoter, cis-regulatory, CTCF-CTCF, mixed, etc. A final .csv table containing the loop positions, absolute looping probabilities, and loop classification details is generated.
 
 
-### Analysis of publicly available epigenomic data
+## Analysis of publicly available epigenomic data
 _______________
 
 #### Alignment scripts (spikeinChIP_SE_alignment.py/spikeinChIP_PE_alignment.py)
@@ -117,7 +117,24 @@ Example usage:
 ```python calculate_bigwig_signal_at_anchors.py CTCF_GSE90994```
 
 
-### 3D polymer simulations
+## 3D polymer simulations
 __________________
+
+#### Running polymer simulations
+
+The folder `3D_polysim_code` contains the code used to perform the polymer simulations themselves. There are three different conditions:
+
+* `3D_polysim_with_loopextr_with_EP_3kBT.py`: with loop extrusion and enhancer-promoter attraction (generates main simulation data)
+* `3D_polysim_with_loopextr_no_EP.py`: with loop extrusion, no enhancer-promoter attraction (data is used to estimate the ground-truth background interaction probability of enhancer-promoter contacts)
+* `3D_polysim_no_loopextr_no_EP.py`: no loop extrusion, no enhancer-promoter attraction (data is used for calibration of length and time scales)
+* `DSB_smcTranslocator_v2.pyx`: a Cython file that performs the 1D simulations of loop extrusion used to generate the bonds in the main 3D simulation
+
+#### Processing simulated Micro-C map (simulation_data_processing.ipynb)
+
+This Jupyter notebook contains the code to generate a simulated Micro-C contact map of the entire chromosome, store it in .cool format, and balance the contact map in the same fashion as for real experimental data.
+
+#### Calculate looping probabilities and Micro-C dot strengths from simulations (calculate_simulation_calibration_curve.ipynb)
+
+This Jupyter notebook is used to calculate the ground-truth looping probabilities (y-values) from the simulated trajectories, as well as the Micro-C dot strengths (x-values) from the simulated Micro-C contact map, to be used in the simulated calibration curve.
 
 
