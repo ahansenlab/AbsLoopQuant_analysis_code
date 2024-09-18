@@ -50,11 +50,7 @@ def calculate_and_save_avg_Ps_curve(clr, nproc=1, max_sep=3000000, output_filena
     cvd = cooltools.expected_cis(clr=clr, smooth=True, aggregate_smoothed=True, nproc=nproc)
     cvd['s_bp'] = cvd['dist'] * res
     
-    chr_names = list(clr.chromsizes[clr.chromsizes>max_sep].index)
-    if 'chrM' in chr_names:
-        chr_names.remove('chrM')
-    if 'chrY' in chr_names:
-        chr_names.remove('chrY')
+    chr_names = [chrom_name for chrom_name in clr.chromnames if len(chrom_name)>3 and (chrom_name[3:].isnumeric() or chrom_name[3:]=='X')]  # only take numbered choromosomes and chrX
 
     # average across chromosomes
     P_s_data_all_chrs = np.zeros((1+max_sep//res, len(chr_names)))
@@ -239,7 +235,7 @@ class LoopQuantifier:
         
         # get local background
         local_bg_img = bg_img * c_best_fit
-        
+             
         # subtract local background from image
         img_local_bg_subtracted = img_NAs_removed - local_bg_img
         
@@ -262,7 +258,7 @@ class LoopQuantifier:
                       'P_s_to_fit':P_s_to_fit,
                       'c_best_fit':c_best_fit}
             return output
-        
+            
         return loop_quantification_score
     
     def plot_quantification(self, chr_name, left, right, img, img_over_bg, img_outliers_removed, img_local_bg_subtracted, s_to_fit, P_s_to_fit, c_best_fit, coords_convert_function=None):

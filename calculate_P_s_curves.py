@@ -1,3 +1,10 @@
+import cooler
+
+# import the loop quantification module
+import sys
+sys.path.insert(1, '/mnt/md0/jjusuf/absloopquant/AbsLoopQuant_analysis_code')
+import looptools
+
 # load coolers
 coolers = {}
 res = 1000
