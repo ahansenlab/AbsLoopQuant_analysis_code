@@ -75,10 +75,6 @@ This Python script filters the chromatin loops based on various criteria for qua
 
 This Python script calculates the AbLE scores of the filtered loops, saving the output as a .csv file. This script uses multiprocessing to speed up the operations.
 
-#### Calculate AbLE score at random positions (filter_random_loops.py and quantify_random_loops.py)
-
-These Python scripts are used to calculate AbLE scores at random positions in the Micro-C map as a negative control. These scripts correspond to `filter_loops.py` and `quantify_loops.py`.
-
 #### Absolute Looping Estimator (AbLE) module (looptools.py)
 
 This is the main Python module for loop quantification by AbLE. It contains the functions to calculate the average P(s) curves (used in `calculate_P_s_curves.py`) and to calculate the AbLE scores of loops (used in `quantify_loops.py`).
