@@ -1,6 +1,6 @@
 # Absolute Loop Quantification analysis code
 
-This repository contains source code for _Genome-wide Absolute Quantification of Chromatin Looping_.
+This repository contains source code for _Genome-wide absolute quantification of chromatin looping_ by James M. Jusuf, Simon Grosse-Holz, Michele Gabriele, Pia Mach, Ilya M. Flyamer, Christoph Zechner, Luca Giorgetti, Leonid A. Mirny, and Anders S. Hansen.
 
 Code is provided as shell scripts, Python scripts, or Jupyter notebooks to be run in conda environments.
 
