@@ -173,9 +173,13 @@ class LoopQuantifier:
         local_maxima_bool = img_over_bg_blurred==grey_dilation(img_over_bg_blurred, footprint=self.footprint)
         strong_local_maxima_bool = np.logical_and(local_maxima_bool, img_over_bg_blurred>k_min*np.nanmedian(img_over_bg_blurred))
         
+        # store results
+        self.strong_local_maxima_bool = strong_local_maxima_bool
+        self.img_over_bg_blurred = img_over_bg_blurred
+        
         return strong_local_maxima_bool
     
-    def quantify_loop(self, chr_name, left, right, coords_convert_function=None, local_region_size=50000, quant_region_size=10000, clr_for_outlier_detection=None, P_s_values_for_outlier_detection=None, convert_coords_outliers=False, k_min=None, outliers_to_remove=None, return_all=False, show_plot=False):
+    def quantify_loop(self, chr_name, left, right, coords_convert_function=None, local_region_size=50000, quant_region_size=10000, clr_for_outlier_detection=None, P_s_values_for_outlier_detection=None, convert_coords_outliers=False, k_min=None, outliers_to_remove=None, show_plot=False):
         
         # if the stored values of local_region_size and quant_region_size do not match the requested values,
         # regenerate the precomputed matrices and store the new values
@@ -246,18 +250,16 @@ class LoopQuantifier:
         if show_plot:
             self.plot_quantification(chr_name, left, right, img, img_over_bg, img_outliers_removed, img_local_bg_subtracted, s_to_fit, P_s_to_fit, c_best_fit, coords_convert_function)
             
-        if return_all:
-            output = {'loop_quantification_score':loop_quantification_score,
-                      'img':img,
-                      'img_over_bg':img_over_bg,
-                      'img_NAs_removed':img_NAs_removed,
-                      'img_outliers_removed':img_outliers_removed,
-                      'local_bg_img':local_bg_img,
-                      'img_local_bg_subtracted':img_local_bg_subtracted,
-                      's_to_fit':s_to_fit,
-                      'P_s_to_fit':P_s_to_fit,
-                      'c_best_fit':c_best_fit}
-            return output
+        self.loop_quantification_score = loop_quantification_score
+        self.img = img
+        self.img_over_bg = img_over_bg
+        self.img_NAs_removed = img_NAs_removed
+        self.img_outliers_removed = img_outliers_removed
+        self.local_bg_img = local_bg_img
+        self.img_local_bg_subtracted = img_local_bg_subtracted
+        self.s_to_fit = s_to_fit
+        self.P_s_to_fit = P_s_to_fit
+        self.c_best_fit = c_best_fit
             
         return loop_quantification_score
     
@@ -326,3 +328,5 @@ class LoopQuantifier:
         plt.suptitle(f'{chr_name}:{left/1e6:.3f}-{right/1e6:.3f} Mb', fontsize=12)
         
         plt.subplots_adjust(hspace=0.3)
+        
+        
