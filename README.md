@@ -1,6 +1,8 @@
 # Absolute Loop Quantification analysis code
 
-This repository contains source code for _Genome-wide absolute quantification of chromatin looping_ by James M. Jusuf, Simon Grosse-Holz, Michele Gabriele, Pia Mach, Ilya M. Flyamer, Christoph Zechner, Luca Giorgetti, Leonid A. Mirny, and Anders S. Hansen.
+This repository contains source code used for analysis in the preprint _Genome-wide absolute quantification of chromatin looping_ by James M. Jusuf, Simon Grosse-Holz, Michele Gabriele, Pia Mach, Ilya M. Flyamer, Christoph Zechner, Luca Giorgetti, Leonid A. Mirny, and Anders S. Hansen (2025).
+
+Most of the data needed to run this code is in the folder `AbsLoopQuant_data` and will be shared to Zenodo upon final publication. The raw and processed Micro-C data (`.mcool` files) are available on NCBI GEO (accession number GSE286495).
 
 Code is provided as shell scripts, Python scripts, or Jupyter notebooks to be run in conda environments.
 
@@ -133,3 +135,8 @@ This Jupyter notebook contains the code to generate a simulated Micro-C contact 
 This Jupyter notebook is used to calculate the ground-truth looping probabilities (y-values) from the simulated trajectories, as well as the Micro-C dot strengths (x-values) from the simulated Micro-C contact map, to be used in the simulated calibration curve.
 
 
+## How to cite
+
+This work is shared under an MIT license. If you make use of analysis scripts or data from this work, please cite as follows:
+
+Jusuf, J.M., Grosse-Holz, S., Gabriele, M., Mach, P., Flyamer, I.M., Zechner, C., Giorgetti, L., Mirny, Leonid, L.A., Hansen, A.S., Genome-wide absolute quantification of chromatin looping.
