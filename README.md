@@ -8,7 +8,7 @@ Code is provided as shell scripts, Python scripts, or Jupyter notebooks to be ru
 
 ## Loop quantification demo
 
-The Jupyter notebook `loop_quantification_demo.ipynb` contains a short demo of quantifying a loop using AbLE (Absolute Loop Estimator) in one of our Micro-C maps. In order to run this code, the `looptools.py` module should be placed in the working direectory and imported as shown in the first cell of the demo. In addition, the following standard packages are required:
+The Jupyter notebook `loop_quantification_demo.ipynb` contains a short demo of quantifying a loop using AbLE (Absolute Loop Estimator) in one of our Micro-C maps. The code uses the _Npr3_ replicate 1 and merged mESC Micro-C maps, which must be downloaded from GEO (GSE286495); approximately 36 GB total. Also, the `looptools.py` module should be placed in the working direectory and imported as shown in the first cell of the demo. The following standard packages are required:
 * numpy (1.24.4)
 * scipy (1.11.2)
 * pandas (1.5.3)
@@ -16,6 +16,7 @@ The Jupyter notebook `loop_quantification_demo.ipynb` contains a short demo of q
 * opencv-python (4.10.0.82)
 * cooler (0.9.3)
 * cooltools (0.5.4)
+
 The software has been tested on the version numbers indicated in the parentheses.
 
 ## Main scripts for Micro-C data processing
