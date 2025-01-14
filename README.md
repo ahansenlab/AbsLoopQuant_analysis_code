@@ -19,7 +19,7 @@ The `looptools.py` module should be placed in the working directory and imported
 * cooler (0.9.3)
 * cooltools (0.5.4)
 
-The software has been tested on the version numbers indicated in the parentheses. The demo should take a few seconds to run on a typical desktop computer.
+The software has been tested on the version numbers indicated in the parentheses on a computer running Ubuntu 20.04. The demo should take a few seconds to run on a typical desktop computer.
 
 ## Main scripts for Micro-C data processing
 
