@@ -68,7 +68,7 @@ if double_syn_regions:
     sp.run(f'python {os.path.join(scripts_path, "double_read_counts_in_TetO_LacO_bins.py")} {sample_name}_{binsize}.cool {sample_name}_doubled_syn_regions.cool', shell=True, cwd=outdir)
     cool_filename_for_mcool = f'{sample_name}_doubled_syn_regions.cool'
 else:
-    cool_filename_for_mcool = f'{sample_name}_250.cool'
+    cool_filename_for_mcool = f'{sample_name}_{binsize}.cool'
 
 # calculate bin sizes
 all_bin_sizes_list = ','.split('10000000,5000000,2000000,1000000,500000,200000,100000,50000,20000,10000,5000,2000,1000,500,250')
@@ -76,7 +76,7 @@ all_bin_sizes_list = [i for i in all_bin_sizes_list if i >= binsize]
 all_bin_sizes = ','.join(all_bin_sizes_list)
 
 # make mcool
-sp.run(f'''cooler zoomify --nproc {nproc} --balance --balance-args '--nproc {nproc} --ignore-diags 2 --ignore-dist {ignore_dist}' --out {sample_name}.mcool --resolutions {all_bin_sizes} {cool_filename_for_mcool}''', shell=True, cwd=outdir)
+sp.run(f'''cooler zoomify --nproc {nproc} --balance --balance-args '--nproc {nproc} --ignore-diags 2 --ignore-dist {ignore_dist}' --out {sample_name}.mcool --resolutions {allPlease move or remove them before you merge._bin_sizes} {cool_filename_for_mcool}''', shell=True, cwd=outdir)
 
 # remove temporary directory
 sp.run('rm -r tempdir', shell=True, cwd=outdir)
