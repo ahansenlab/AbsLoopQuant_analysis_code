@@ -19,7 +19,7 @@ sample_name = args.name
 genome_path = args.genome
 assembly = args.assembly
 nproc = args.threads
-target_trans_fraction = float(args.transfraction)
+target_trans_fraction = args.transfraction
 double_syn_regions = args.double
 ignore_dist = args.ignoredist
 outdir = args.outdir
@@ -31,6 +31,7 @@ if target_trans_fraction is None:
     skip_trans_downsampling = True
 else:
     skip_trans_downsampling = False
+    target_trans_fraction = float(target_trans_fraction)
     
     # calculate the current fraction of trans reads
     dedup_stats_file = open(os.path.join(outdir, f'{sample_name}_dedup.stats'))
