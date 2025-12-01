@@ -76,7 +76,7 @@ all_bin_sizes_list = [i for i in all_bin_sizes_list if i >= binsize]
 all_bin_sizes = ','.join(all_bin_sizes_list)
 
 # make mcool
-sp.run(f'''cooler zoomify --nproc {nproc} --balance --balance-args '--nproc {nproc} --ignore-diags 2 --ignore-dist {ignore_dist}' --out {sample_name}.mcool --resolutions {allPlease move or remove them before you merge._bin_sizes} {cool_filename_for_mcool}''', shell=True, cwd=outdir)
+sp.run(f'''cooler zoomify --nproc {nproc} --balance --balance-args '--nproc {nproc} --ignore-diags 2 --ignore-dist {ignore_dist}' --out {sample_name}.mcool --resolutions {all_bin_sizes} {cool_filename_for_mcool}''', shell=True, cwd=outdir)
 
 # remove temporary directory
 sp.run('rm -r tempdir', shell=True, cwd=outdir)
