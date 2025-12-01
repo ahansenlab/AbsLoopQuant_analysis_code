@@ -72,7 +72,7 @@ else:
     cool_filename_for_mcool = f'{sample_name}_{binsize}.cool'
 
 # calculate bin sizes
-all_bin_sizes_list = ','.split('10000000,5000000,2000000,1000000,500000,200000,100000,50000,20000,10000,5000,2000,1000,500,250')
+all_bin_sizes_list = '10000000,5000000,2000000,1000000,500000,200000,100000,50000,20000,10000,5000,2000,1000,500,250'.split(',')
 all_bin_sizes_list = [i for i in all_bin_sizes_list if int(i) >= binsize]
 all_bin_sizes = ','.join(all_bin_sizes_list)
 
