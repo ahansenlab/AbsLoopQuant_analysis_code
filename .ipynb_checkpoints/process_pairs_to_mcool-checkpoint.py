@@ -12,7 +12,6 @@ parser.add_argument('--transfraction', '-p', help='target fraction of trans read
 parser.add_argument('--double', '-d', help='double synthetic regions corresponding to TetO+3xCTCF and 3xCTCF+LacO regions in TetO+LacO+3xCTCF cell line from Mach et al. 2022', action='store_true')
 parser.add_argument('--ignoredist', '-i', help='distance in bp to ignore from the diagonal when balancing contact map (only used at resolutions where it corresponds to more than 2 diagonals)')
 parser.add_argument('--outdir', '-o', help='output directory')
-parser.add_argument('--binsize', '-b', help='smallest cooler binsize to make', default='250')
 
 args = parser.parse_args()
 sample_name = args.name
@@ -23,7 +22,6 @@ target_trans_fraction = float(args.transfraction)
 double_syn_regions = args.double
 ignore_dist = args.ignoredist
 outdir = args.outdir
-binsize = int(args.binsize)
 
 scripts_path = os.path.dirname(os.path.realpath(__file__))  # path to directory of current file (where all the scripts are contained)
 
@@ -61,22 +59,17 @@ else:
 sp.run(f'pairix {pairs_filename_for_cool}', shell=True, cwd=outdir)
 
 # generate cooler
-sp.run(f'bgzip -cd -@ {nproc} {pairs_filename_for_cool} | cooler cload pairs -c1 2 -p1 3 -c2 4 -p2 5 --assembly {assembly} {genome_path}.sorted.chrom.sizes:{binsize} - {sample_name}_{binsize}.cool', shell=True, cwd=outdir)
+sp.run(f'bgzip -cd -@ {nproc} {pairs_filename_for_cool} | cooler cload pairs -c1 2 -p1 3 -c2 4 -p2 5 --assembly {assembly} {genome_path}.sorted.chrom.sizes:250 - {sample_name}_250.cool', shell=True, cwd=outdir)
 
 if double_syn_regions:
     # double synthetic regions
-    sp.run(f'python {os.path.join(scripts_path, "double_read_counts_in_TetO_LacO_bins.py")} {sample_name}_{binsize}.cool {sample_name}_doubled_syn_regions.cool', shell=True, cwd=outdir)
+    sp.run(f'python {os.path.join(scripts_path, "double_read_counts_in_TetO_LacO_bins.py")} {sample_name}_250.cool {sample_name}_doubled_syn_regions.cool', shell=True, cwd=outdir)
     cool_filename_for_mcool = f'{sample_name}_doubled_syn_regions.cool'
 else:
     cool_filename_for_mcool = f'{sample_name}_250.cool'
 
-# calculate bin sizes
-all_bin_sizes_list = ','.split('10000000,5000000,2000000,1000000,500000,200000,100000,50000,20000,10000,5000,2000,1000,500,250')
-all_bin_sizes_list = [i for i in all_bin_sizes_list if i >= binsize]
-all_bin_sizes = ','.join(all_bin_sizes_list)
-
 # make mcool
-sp.run(f'''cooler zoomify --nproc {nproc} --balance --balance-args '--nproc {nproc} --ignore-diags 2 --ignore-dist {ignore_dist}' --out {sample_name}.mcool --resolutions {all_bin_sizes} {cool_filename_for_mcool}''', shell=True, cwd=outdir)
+sp.run(f'''cooler zoomify --nproc {nproc} --balance --balance-args '--nproc {nproc} --ignore-diags 2 --ignore-dist {ignore_dist}' --out {sample_name}.mcool --resolutions 10000000,5000000,2000000,1000000,500000,200000,100000,50000,20000,10000,5000,2000,1000,500,250 {cool_filename_for_mcool}''', shell=True, cwd=outdir)
 
 # remove temporary directory
 sp.run('rm -r tempdir', shell=True, cwd=outdir)
